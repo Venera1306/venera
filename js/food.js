@@ -189,12 +189,17 @@ function getZero(num) {
                     this.parent.append(element);
         }
     }
-    getResource(' http://localhost:3000/menu')
-    .then(data => 
-        { data.forEach(({img, altimg, title, descr, price}) =>{
-    new MenuCard(img, altimg, title, descr, price, ".menu .container").render();
+    // getResource(' http://localhost:3000/menu')
+    // .then(data => 
+    //     { data.forEach(({img, altimg, title, descr, price}) =>{
+    // new MenuCard(img, altimg, title, descr, price, ".menu .container").render();
 
-});
+// });
+axios.get('http://localhost:3000/menu')
+.then(data=> 
+    { data.data.forEach(({img, altimg, title, descr, price}) =>{
+     new MenuCard(img, altimg, title, descr, price, ".menu .container").render();
+    });
 });
         async function getResource ( url) {
         let res =  await fetch(url);
@@ -237,7 +242,7 @@ function getZero(num) {
                     let statusMessage = document.createElement('img');
                     statusMessage.src = message.loading;
                     statusMessage.style.cssText = `
-                    display: block;
+                    display: block; 
                     margin: 0 auto;
                     `
                  
