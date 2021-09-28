@@ -293,7 +293,7 @@ for (let i = 0; i < slides.length; i++) {
         background-color: #fff;
         background-clip: padding-box;
         border-top: 10px solid transparent;
-        border-bottom: 10px solid transparent;
+        border-bottom: 10px solid transparent; 
         opacity: .5;
         transition: opacity .6s ease;
     `;
@@ -305,14 +305,19 @@ for (let i = 0; i < slides.length; i++) {
     dots.push(dot);
 
     
-}
+};
+
+  function deleteNotDigits(str) {
+      return +str.replace(/\D/g, '')
+  };
+
 
     next.addEventListener('click', () => {
-        if  (offset == +width.slice(0, width.length - 2) * (slides.length - 1)) {
+        if  (offset == deleteNotDigits(width) * (slides.length - 1)) {
             offset = 0;
         } else { 
 
-            offset += +width.slice(0, width.length - 2);
+            offset += deleteNotDigits(width);
 
         }
         slidesField.style.transform = `translateX(-${offset}px)`;
@@ -336,10 +341,10 @@ for (let i = 0; i < slides.length; i++) {
 
     prev.addEventListener('click', () => {
          if  (offset == 0) {
-            offset = +width.slice(0, width.length - 2) * (slides.length - 1);
+            offset = deleteNotDigits(width) * (slides.length - 1);
         }
             else {
-                offset -= +width.slice(0, width.length - 2);
+                offset -= deleteNotDigits(width);
             }
 
         slidesField.style.transform = `translateX(-${offset}px)`;
@@ -366,11 +371,11 @@ for (let i = 0; i < slides.length; i++) {
               const slideTo = e.target.getAttribute('data-slide-to');
 
               slideIndex = slideTo;
-              offset = +width.slice(0, width.length - 2) * (slideTo - 1);
+              offset = deleteNotDigits(width) * (slideTo - 1);
               slidesField.style.transform = `translateX(-${offset}px)`;
-              
+               
               if (slides.length < 10) {
-                current.textContent = `0${slideIndex}`;
+                current.textContent = `0${slideIndex}`; 
               
             } else 
             {
