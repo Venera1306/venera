@@ -110,5 +110,5 @@ function calculation () {
         
         };
 
-        module.exports = calculation;
+        export default calculation;
         
